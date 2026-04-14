@@ -156,6 +156,66 @@ the whole team."
 
 ---
 
+## 11. Audit Vault Health
+
+**Scenario:** Your vault has grown past a few hundred notes. You want to find orphan notes, stale content linked to active goals, and topics that are thinly covered.
+
+**How:**
+```
+"Lint my vault"
+```
+
+**Or:**
+```
+"Vault health check"
+"KB audit"
+```
+
+**Result:** A structured health report with 5 checks:
+
+1. **Orphan reconnection candidates** — orphan notes that now share tags with newer notes, with suggested wikilinks
+2. **Stale content** — notes older than 90 days tied to active Telos goals (may be outdated)
+3. **Missing cross-references** — clusters of 3+ notes sharing 3+ tags but not linked to each other
+4. **Telos coverage** — ranked table showing which goals/projects are thinly covered vs. well-documented
+5. **Topical index rebuild** — refreshes the `## By Topic` section of the Sources Index by clustering tags
+
+Target completion: under 30 seconds. Checks 1–4 are read-only; only the topical index rebuild writes to the vault.
+
+---
+
+## 12. Synthesize a Concept Page
+
+**Scenario:** You've been saving notes on "agentic architecture" for months. You want a single concept page that pulls together what you actually know — the patterns, the contradictions, the open questions.
+
+**How:**
+```
+"Synthesize notes on agentic architecture"
+```
+
+**Or:**
+```
+"What do I know about product-led growth?"
+"Concept page for typescript patterns"
+"Merge notes about rate limiting"
+```
+
+**Result:** The skill:
+
+1. Runs a freshness check — if a synthesis for this topic already exists and no new sources have been added, it asks before regenerating
+2. Runs parallel searches across tags, titles, and content to find all related source notes (minimum 3, max 15 most recent)
+3. Reads the **full content** of each source note — not just summaries
+4. Writes a concept page at `{{VAULT_PATH}}/2. Notes/Synthesis/YYYY-MM-DD-{topic}-synthesis.md` containing:
+   - **Key Patterns** — recurring themes across source notes
+   - **Core Ideas** — organized logically, each cited with `[[wikilinks]]` to sources
+   - **Contradictions & Tensions** — conflicting claims you might not have noticed
+   - **Open Questions** — gaps the notes raise but don't answer (useful as save targets for next time)
+   - **Sources** — full wikilink list
+5. Updates today's Daily Note with a link to the new synthesis page
+
+Synthesis is the payoff of the whole system — it turns scattered notes into structured understanding you can reference and build on.
+
+---
+
 ## Team Workflow Examples
 
 ### Shared Knowledge Base

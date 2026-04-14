@@ -16,24 +16,12 @@ KnowledgeBase/
     ├── Search.md         # Find existing vault content
     ├── DailyJournal.md   # Journal entries & weekly review
     ├── DailyNote.md      # Daily aggregation of all saved content
-    └── WatchLater.md     # URL queue for future processing
+    ├── WatchLater.md     # URL queue for future processing
+    ├── Lint.md           # Vault health audit (orphans, stale content, gaps)
+    └── Synthesize.md     # Generate concept pages across multiple notes
 ```
 
-## Vault Structure
-
-The skill organizes content into these directories (configurable):
-
-| Directory | Purpose |
-|-----------|---------|
-| `1. Inbox/` | Quick captures, unsorted items, watch-later queue |
-| `2. Notes/Reference/` | Factual notes, references |
-| `2. Notes/Learning/` | Lessons, tutorials, TIL |
-| `2. Notes/Ideas/` | Brainstorms, concepts, hypotheses |
-| `2. Notes/Conversations/` | Chat summaries, meeting notes |
-| `3. Projects/` | Project-specific notes |
-| `4. Journal/` | Daily journal entries, weekly reviews |
-| `5. Resources/Clippings/` | Web clippings, article saves |
-| `7. Daily Notes/` | Auto-generated daily aggregation |
+See **[WORKFLOW.md](./WORKFLOW.md)** for the end-to-end pipeline — how Save / WatchLater / DailyJournal / Lint / Synthesize / Search fit together.
 
 ## Quick Start
 
@@ -54,6 +42,27 @@ See [CONFIG.example.md](./CONFIG.example.md) for all configurable values.
 | **DailyJournal** | "journal entry", "weekly review" | Timestamped journal entries, one file per day |
 | **DailyNote** | "what did I save today" | Auto-aggregated index of everything saved on a given day |
 | **WatchLater** | "watch later", "read later", "show queue" | URL queue with type hints, processing tracking |
+| **Lint** | "lint vault", "audit vault", "KB health" | 5-check health audit: orphans, stale content, missing cross-refs, Telos coverage, topical index rebuild |
+| **Synthesize** | "synthesize notes on...", "concept page for...", "what do I know about..." | Reads multiple related notes and generates a concept page with patterns, core ideas, contradictions, and open questions |
+
+## Vault Structure
+
+```
+VAULT_PATH/
+├── 1. Inbox/                  ← Quick captures, watch-later queue
+├── 2. Notes/
+│   ├── Reference/             ← Factual notes
+│   ├── Learning/              ← Lessons, TIL
+│   ├── Ideas/                 ← Brainstorms
+│   ├── Conversations/         ← Meeting notes
+│   └── Synthesis/             ← Auto-generated concept pages
+├── 3. Projects/               ← Project-specific notes
+├── 4. Journal/                ← Daily journal entries
+├── 5. Resources/
+│   ├── Clippings/             ← Web clippings
+│   └── Templates/             ← Weekly review, etc.
+└── 7. Daily Notes/            ← Auto-generated daily aggregation
+```
 
 ## File Format
 
@@ -91,8 +100,12 @@ Content body in clean markdown.
 - **Watch Later integration** — queued URLs auto-link when processed
 - **Sources Index** — chronological index of all consumed content
 - **Duplicate detection** — warns if URL already saved
+- **Vault health audit** — periodic lint finds orphans, stale content, missing cross-references, thin Telos coverage
+- **Concept synthesis** — generate second-order notes that analyze patterns across multiple vault notes
+- **Optional Telos integration** — map notes to life-goals for purposeful knowledge tracking
 
 ## Guides
 
+- [Workflow](./WORKFLOW.md) — Full end-to-end pipeline: input → aggregation → audit → synthesis → retrieval
 - [Use Cases](./USE-CASES.md) — Common scenarios and examples
 - [Usage Guide / Hướng dẫn sử dụng](./USAGE-GUIDE.md) — Detailed guide (Vietnamese)
